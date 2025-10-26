@@ -1,0 +1,330 @@
+:root {
+    --primary-bg: #1a1a2e;
+    --secondary-bg: #16213e;
+    --tertiary-bg: #0f3460;
+    --accent-color: #e94560;
+    --primary-text: #ffffff;
+    --secondary-text: #a8a8b3;
+    --xp-color: #53a9ff;
+    --border-color: rgba(255, 255, 255, 0.1);
+    --shadow-color: rgba(0, 0, 0, 0.5);
+
+    /* Themes */
+    --theme-food-primary: #e76f51;
+    --theme-gaming-primary: #2a9d8f;
+    --theme-anime-primary: #e63946;
+    --theme-gym-primary: #f4a261;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent-color) var(--secondary-bg);
+}
+
+body {
+    background-color: var(--primary-bg);
+    color: var(--primary-text);
+    line-height: 1.6;
+}
+
+#app {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/* HUD */
+.hud {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--secondary-bg);
+    padding: 1rem 2rem;
+    border-bottom: 2px solid var(--border-color);
+    box-shadow: 0 4px 15px var(--shadow-color);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.5rem;
+    color: var(--accent-color);
+}
+
+.player-stats {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-item label {
+    font-size: 0.8rem;
+    color: var(--secondary-text);
+    text-transform: uppercase;
+}
+
+#rank {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--accent-color);
+}
+
+#xp-bar {
+    width: 200px;
+    height: 20px;
+    background-color: var(--tertiary-bg);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid var(--border-color);
+}
+
+#xp-fill {
+    width: 0%;
+    height: 100%;
+    background-color: var(--xp-color);
+    transition: width 0.5s ease;
+}
+
+#xp-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+#streak {
+    font-size: 1.5rem;
+    color: #ffc107;
+}
+
+.controls button {
+    background: none;
+    border: 1px solid var(--border-color);
+    color: var(--primary-text);
+    font-size: 1.2rem;
+    padding: 0.5rem 0.8rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.controls button:hover {
+    background-color: var(--tertiary-bg);
+}
+
+/* Main Container */
+.container {
+    display: flex;
+    flex-grow: 1;
+    overflow-y: hidden;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 250px;
+    background-color: var(--secondary-bg);
+    padding: 2rem 1rem;
+    border-right: 2px solid var(--border-color);
+    overflow-y: auto;
+}
+
+.sidebar h2 {
+    color: var(--accent-color);
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+#topic-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.topic-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: var(--tertiary-bg);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    border-left: 4px solid transparent;
+}
+
+.topic-link:hover {
+    background-color: #2a3a5e;
+    transform: translateX(5px);
+}
+
+.topic-link.active {
+    background-color: var(--accent-color);
+    color: var(--primary-text);
+    border-left: 4px solid var(--primary-text);
+}
+
+/* Content Area */
+.content-area {
+    flex-grow: 1;
+    padding: 2rem;
+    overflow-y: auto;
+}
+
+.content-card {
+    background-color: var(--secondary-bg);
+    border-radius: 15px;
+    padding: 2rem;
+    box-shadow: 0 8px 30px var(--shadow-color);
+}
+
+.topic-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+#topic-title {
+    color: var(--accent-color);
+}
+
+.topic-controls button {
+    background-color: var(--tertiary-bg);
+    border: 1px solid var(--border-color);
+    color: var(--primary-text);
+    padding: 0.8rem 1.2rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.topic-controls button:hover {
+    background-color: #2a3a5e;
+}
+
+#topic-content h3 {
+    color: var(--accent-color);
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+#topic-content p {
+    color: var(--secondary-text);
+    margin-bottom: 1rem;
+}
+
+#topic-content ul, #topic-content ol {
+    margin-left: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.code-block {
+    background-color: var(--primary-bg);
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    font-family: 'Fira Code', monospace;
+    overflow-x: auto;
+}
+
+.example-card {
+    background-color: var(--tertiary-bg);
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-top: 1.5rem;
+    border-left: 5px solid;
+}
+
+.example-card.food { border-left-color: var(--theme-food-primary); }
+.example-card.gaming { border-left-color: var(--theme-gaming-primary); }
+.example-card.anime { border-left-color: var(--theme-anime-primary); }
+.example-card.gym { border-left-color: var(--theme-gym-primary); }
+
+.example-card h4 {
+    color: var(--primary-text);
+    margin-bottom: 1rem;
+}
+
+/* Flashcard Mode */
+.flashcard-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.flashcard {
+    width: 500px;
+    height: 300px;
+    perspective: 1000px;
+}
+
+.flashcard-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    cursor: pointer;
+}
+
+.flashcard-inner.is-flipped {
+    transform: rotateY(180deg);
+}
+
+.flashcard-front, .flashcard-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    border-radius: 15px;
+    background-color: var(--tertiary-bg);
+    border: 2px solid var(--accent-color);
+}
+
+.flashcard-back {
+    transform: rotateY(180deg);
+}
+
+.flashcard-nav {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+#exit-flashcard-mode {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    cursor: pointer;
+}
