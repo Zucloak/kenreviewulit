@@ -328,3 +328,52 @@ body {
     font-size: 2rem;
     cursor: pointer;
 }
+
+/* Analogy Card Styling */
+.analogy-card {
+    margin-top: 2rem;
+    padding: 2rem;
+    border-radius: 15px;
+    border-left: 8px solid;
+    background: var(--tertiary-bg);
+}
+
+.analogy-card h3 {
+    margin-bottom: 1rem;
+    color: var(--primary-text);
+}
+
+.analogy-card h4 {
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--secondary-text);
+    text-transform: uppercase;
+    font-size: 0.9rem;
+}
+
+.analogy-card .formula {
+    background: var(--primary-bg);
+    padding: 1.5rem;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    overflow-x: auto;
+}
+
+.analogy-card .visual-ref {
+    font-style: italic;
+    color: var(--secondary-text);
+}
+
+.analogy-card .recall-tip {
+    margin-top: 2rem;
+    padding: 1rem;
+    background: var(--primary-bg);
+    border-radius: 8px;
+    border-left: 4px solid var(--accent-color);
+}
+
+/* Theme Colors for Analogy Cards */
+.analogy-card.food { border-left-color: var(--theme-food-primary); }
+.analogy-card.gaming { border-left-color: var(--theme-gaming-primary); }
+.analogy-card.anime { border-left-color: var(--theme-anime-primary); }
+.analogy-card.gym { border-left-color: var(--theme-gym-primary); }

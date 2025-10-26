@@ -5,23 +5,16 @@ const studyData = {
             title: 'Separable Equations',
             icon: 'fas fa-cut',
             content: {
-                description: "These are the simplest type - you can literally 'separate' the variables to different sides of the equation.",
-                standardForm: 'dy/dx = f(x)g(y) or M(x)dx + N(y)dy = 0',
-                solutionSteps: [
-                    'Separate variables: dy/g(y) = f(x)dx',
-                    'Integrate both sides: ∫dy/g(y) = ∫f(x)dx',
-                    'Solve for y if possible',
-                    "Don't forget the +C!"
-                ],
-                example: {
+                description: "This is the foundational stance, the first and most essential technique in your arsenal. It’s all about breaking a problem down to its purest components. You isolate the x terms on one side and the y terms on the other, making them easy to conquer individually.",
+                standardForm: '$$ \\frac{dy}{dx} = f(x)g(y) $$',
+                analogy: {
                     theme: 'food',
-                    question: 'Solve: dy/dx = 2y/x',
-                    steps: [
-                        'Separate: dy/y = 2dx/x',
-                        'Integrate: ∫dy/y = ∫2dx/x → ln|y| = 2ln|x| + C',
-                        'Solve: y = e^(2ln|x| + C) = e^C * x² = Cx²',
-                    ],
-                    analogy: 'Like separating ingredients before cooking!'
+                    title: 'Mise en Place (Food Prep)',
+                    description: "Think of yourself as a master chef. Before you even think about turning on the heat, you prepare your ingredients. You chop your vegetables and place them in one bowl, measure your spices into another, and have your protein ready on a separate plate. This is *mise en place*. You are separating everything, so when it's time to cook (integrate), the process is clean, orderly, and flawless.",
+                    formula: '$$ \\frac{dy}{g(y)} = f(x)dx $$',
+                    visual: "A satisfying GIF of a chef neatly separating egg yolks from whites, or quickly chopping vegetables and sweeping them into separate containers.",
+                    relevance: "This technique is crucial for modeling simple growth and decay processes, like population growth, radioactive decay, or how a hot drink cools down. It’s about understanding systems where the rate of change depends on the current state.",
+                    tip: "Mise en place! Separate your variables before you integrate."
                 }
             }
         },
@@ -30,26 +23,16 @@ const studyData = {
             title: 'Homogeneous Equations',
             icon: 'fas fa-layer-group',
             content: {
-                description: 'These equations have terms of the same "degree" - think of it like a balanced meal with equal portions!',
-                standardForm: 'M(x,y)dx + N(x,y)dy = 0, where M and N are homogeneous functions of the same degree.',
-                solutionSteps: [
-                    'Check if M and N are homogeneous of same degree',
-                    'Substitute y = vx, so dy = vdx + xdv',
-                    'The equation becomes separable in v and x',
-                    'Solve as separable equation',
-                    'Substitute back y/x for v'
-                ],
-                example: {
+                description: 'These equations are more complex. At first glance, the variables are too mixed to separate. But you, the strategist, recognize a hidden balance: every term has the same "degree." This uniformity is the key to victory.',
+                standardForm: '$$ M(x,y)dx + N(x,y)dy = 0 $$',
+                analogy: {
                     theme: 'gym',
-                    question: 'Solve: (x² + y²)dx + 2xydy = 0',
-                    steps: [
-                        'Both M and N are degree 2 ✓',
-                        'Substitute y = vx, dy = vdx + xdv',
-                        'Equation becomes: (1 + 3v²)dx + 2vx dv = 0',
-                        'Separate: dx/x + 2v/(1+3v²)dv = 0',
-                        'Solve and substitute back'
-                    ],
-                    analogy: 'Like adjusting your form to make an exercise easier!'
+                    title: 'A Balanced Workout',
+                    description: "Imagine designing a full-body workout. You need to balance opposing muscle groups—push and pull, upper and lower body—to ensure stable, holistic strength. A homogeneous equation is like a perfectly balanced set of exercises. To execute it properly, you need the right form. The substitution `y = vx` is that crucial adjustment in your technique—like shifting your grip or stance—that transforms a difficult lift into a manageable one.",
+                    formula: '$$ y = vx \\quad \\text{and} \\quad dy = vdx + xdv $$',
+                    visual: "GIF of a professional weightlifter adjusting their grip and stance before a heavy deadlift. The subtle change allows them to lift immense weight with perfect form.",
+                    relevance: "These equations appear in fields like physics and engineering, especially when dealing with properties that scale uniformly, like certain fluid dynamics or elasticity problems.",
+                    tip: "Same degree? Balanced set. Adjust your form with y=vx."
                 }
             }
         },
@@ -58,27 +41,16 @@ const studyData = {
             title: 'Exact Equations',
             icon: 'fas fa-check-circle',
             content: {
-                description: "These equations are already 'perfect' - they're the differential of some function, like a perfectly balanced meal!",
-                standardForm: 'M(x,y)dx + N(x,y)dy = 0, with the condition: ∂M/∂y = ∂N/∂x',
-                solutionSteps: [
-                    'Check if ∂M/∂y = ∂N/∂x',
-                    'Find F such that ∂F/∂x = M and ∂F/∂y = N',
-                    'Integrate M with respect to x: F = ∫M dx + g(y)',
-                    "Differentiate with respect to y and compare with N to find g'(y)",
-                    "Integrate g'(y) to find g(y)",
-                    'Solution: F(x,y) = C'
-                ],
-                example: {
+                description: "This is a moment of pure clarity in battle. You see an equation that looks like a chaotic mess, but you recognize it as the result of a single, elegant technique—the chain rule in reverse. It’s not a fight; it’s a 'one-hit KO' if you see the opening.",
+                standardForm: '$$ M(x,y)dx + N(x,y)dy = 0 $$',
+                analogy: {
                     theme: 'anime',
-                    question: 'Solve: (y cos x + 2xeʸ)dx + (sin x + x²eʸ - 1)dy = 0',
-                    steps: [
-                        'Check: ∂M/∂y = cos x + 2xeʸ = ∂N/∂x ✓',
-                        'F = ∫(y cos x + 2xeʸ)dx = y sin x + x²eʸ + g(y)',
-                        "∂F/∂y = sin x + x²eʸ + g'(y) = sin x + x²eʸ - 1",
-                        "So g'(y) = -1 → g(y) = -y",
-                        'Solution: y sin x + x²eʸ - y = C'
-                    ],
-                    analogy: 'Like finding the perfect technique in an anime battle!'
+                    title: 'The Perfect Counter',
+                    description: "You're in a high-stakes battle. Your opponent unleashes a complex flurry of attacks. But you've trained for this. You see the pattern, the hidden weakness. In a single, fluid motion, you execute a perfect counter that neutralizes their entire assault. That’s an exact equation. It's already the derivative of a single 'potential function,' and your job is to see it and trace it back to the source.",
+                    formula: '$$ \\frac{\\partial M}{\\partial y} = \\frac{\partial N}{\\partial x} \\quad \\implies \\quad F(x,y) = C $$',
+                    visual: "GIF of an anime swordsman (like Gojo from Jujutsu Kaisen or Levi from Attack on Titan) effortlessly deflecting a seemingly unstoppable attack with one precise, decisive movement.",
+                    relevance: "This is the language of conservation laws in physics. The potential function F(x,y) is often related to potential energy, and the equation describes a system where energy is conserved.",
+                    tip: "See the perfect balance (∂M/∂y = ∂N/∂x)? It's a one-hit KO. Find the source technique, F(x,y)."
                 }
             }
         },
@@ -87,28 +59,16 @@ const studyData = {
             title: 'Linear Equations',
             icon: 'fas fa-chart-line',
             content: {
-                description: 'These equations follow a straight path - once you find the right "multiplier" (integrating factor), they become easy!',
-                standardForm: 'dy/dx + P(x)y = Q(x)',
-                solutionSteps: [
-                    'Identify P(x) and Q(x)',
-                    'Find integrating factor: μ(x) = e^∫P(x)dx',
-                    'Multiply the equation by μ(x)',
-                    'Left side becomes d/dx[μ(x)y]',
-                    'Integrate both sides: μ(x)y = ∫μ(x)Q(x)dx + C',
-                    'Solve for y'
-                ],
-                example: {
+                description: "This is a common opponent, a standard pattern of attack. It’s straightforward, but requires a special tool to defeat. You need to craft a 'power-up item'—the integrating factor—that transforms the equation and makes it vulnerable.",
+                standardForm: '$$ \\frac{dy}{dx} + P(x)y = Q(x) $$',
+                analogy: {
                     theme: 'gaming',
-                    question: "Solve: y' + 2y cos x = sin²x cos x",
-                    steps: [
-                        'P(x) = 2 cos x, Q(x) = sin²x cos x',
-                        'μ(x) = e^∫2 cos x dx = e^{2 sin x}',
-                        'Multiply: e^{2 sin x}y\' + 2 cos x e^{2 sin x}y = sin²x cos x e^{2 sin x}',
-                        'Left side is d/dx[e^{2 sin x}y]',
-                        'Integrate: e^{2 sin x}y = ∫sin²x cos x e^{2 sin x}dx',
-                        'Solve for y'
-                    ],
-                    analogy: "Like using an item to boost your champion's power in TFT!"
+                    title: 'Equipping a Game-Changing Item (TFT)',
+                    description: "You're in a crucial Teamfight Tactics match. Your main champion is strong but is getting overwhelmed. You need a force multiplier. You forge a critical item, like an Infinity Edge or a Rabadon's Deathcap, and equip it to them. Suddenly, their power skyrockets, and they slice through the enemy team. The integrating factor, μ(x), is that game-changing item.",
+                    formula: '$$ \\mu(x) = e^{\\int P(x)dx} $$',
+                    visual: "GIF from TFT where a champion is given a powerful item, and their character model begins to glow as they unleash a devastatingly powerful new attack.",
+                    relevance: "Linear equations are everywhere. They model electrical circuits (RLC circuits), mixing problems (salt in a tank), and the cooling of objects. They are the workhorse of first-order differential equations.",
+                    tip: "Facing a linear opponent? Forge your item, μ(x), and multiply its power."
                 }
             }
         },
@@ -117,109 +77,17 @@ const studyData = {
             title: 'Bernoulli Equations',
             icon: 'fas fa-bolt',
             content: {
-                description: 'These look complicated but can be transformed into linear equations with a simple substitution!',
-                standardForm: 'dy/dx + P(x)y = Q(x)yⁿ',
-                solutionSteps: [
-                    'Identify n, P(x), and Q(x)',
-                    'Substitute: z = y^(1-n)',
-                    'Differentiate to find dz/dx',
-                    'Substitute into original equation',
-                    'It becomes linear in z!',
-                    'Solve as linear equation',
-                    'Substitute back y = z^(1/(1-n))'
-                ],
-                example: {
-                    theme: 'food',
-                    question: "Solve: y' + xy = xy²",
-                    steps: [
-                        'n = 2, P(x) = x, Q(x) = x',
-                        'z = y^(1-2) = y^(-1)',
-                        'dz/dx = -y^(-2) dy/dx',
-                        'Substitute: -y² dz/dx + xy = xy²',
-                        'Divide by -y²: dz/dx - xz = -x (linear!)',
-                        'Solve as linear equation'
-                    ],
-                    analogy: 'Like transforming a complex recipe into simple steps!'
-                }
-            }
-        },
-        {
-            id: 'decision',
-            title: 'Decision Tree',
-            icon: 'fas fa-sitemap',
-            content: {
-                description: 'Not sure which method to use? Follow this flowchart!',
-                decisionTree: [
-                    { type: 'question', text: 'Start: Given a differential equation M(x,y)dx + N(x,y)dy = 0' },
-                    { type: 'question', text: 'Question 1: Can you separate variables? (Can write as f(x)dx + g(y)dy = 0)' },
-                    { type: 'answer', text: 'YES → Use Variable Separable method' },
-                    { type: 'answer', text: 'NO → Go to Question 2' },
-                    { type: 'question', text: 'Question 2: Are M and N homogeneous of the same degree?' },
-                    { type: 'answer', text: 'YES → Use Homogeneous method (substitute y = vx)' },
-                    { type: 'answer', text: 'NO → Go to Question 3' },
-                    { type: 'question', text: 'Question 3: Is it exact? (Check if ∂M/∂y = ∂N/∂x)' },
-                    { type: 'answer', text: 'YES → Use Exact Equation method' },
-                    { type: 'answer', text: 'NO → Go to Question 4' },
-                    { type: 'question', text: 'Question 4: Can you write it as dy/dx + P(x)y = Q(x)?' },
-                    { type: 'answer', text: 'YES → Use Linear Equation method' },
-                    { type: 'answer', text: 'NO → Go to Question 5' },
-                    { type: 'question', text: 'Question 5: Can you write it as dy/dx + P(x)y = Q(x)yⁿ?' },
-                    { type: 'answer', text: 'YES → Use Bernoulli Equation method' },
-                    { type: 'answer', text: 'NO → Try Integrable Combinations or other methods' }
-                ],
+                description: "This opponent is a master of disguise. It looks non-linear and intimidating because of an extra yⁿ term. But this is a trick. A simple, clever substitution will break the illusion and reveal it for what it truly is: a Linear Equation in a costume.",
+                standardForm: '$$ \\frac{dy}{dx} + P(x)y = Q(x)y^n $$',
                 analogy: {
-                    theme: 'gym',
-                    text: 'Choosing the right method is like selecting the right exercise for your workout goals. You wouldn\'t do bicep curls to strengthen your legs!'
+                    theme: 'anime',
+                    title: 'The Transformation Power-Up',
+                    description: "A formidable villain appears, seemingly unbeatable. But the hero has a hidden card to play: a transformation. They power up (like a Super Saiyan or activating a Bankai), and in their new form, the villain's attacks are suddenly manageable. The substitution z = y¹⁻ⁿ is that transformation. It changes your perspective, turning an impossible nonlinear fight into a linear one you already know how to win.",
+                    formula: '$$ z = y^{1-n} $$',
+                    visual: "A dramatic GIF of an anime character's transformation sequence (like Deku activating Full Cowl or Ichigo's Bankai reveal). They are surrounded by energy as they change form, ready to dominate the fight.",
+                    relevance: "This technique is a prime example of a core engineering and science principle: if you can't solve a problem, transform it into one you can solve. It appears in fluid dynamics and population models where there are limiting factors (the yⁿ term).",
+                    tip: "See that rogue yⁿ? It's a disguise. Transform and reveal its true linear form!"
                 }
-            }
-        },
-        {
-            id: 'tips',
-            title: 'Quick Tips',
-            icon: 'fas fa-lightbulb',
-            content: {
-                description: 'Helpful tips tailored to your interests!',
-                quickTips: [
-                    {
-                        theme: 'food',
-                        title: 'Food Tips',
-                        tips: [
-                            "Separable Equations: Like separating ingredients before cooking - keep x's and y's on different sides!",
-                            "Integrating Factor: Like a special sauce that makes everything come together perfectly."
-                        ]
-                    },
-                    {
-                        theme: 'gaming',
-                        title: 'TFT Tips',
-                        tips: [
-                            "Decision Making: Like choosing your comp - identify the equation type first!",
-                            "Substitution: Like pivoting your comp when it's not working - try a different approach!"
-                        ]
-                    },
-                    {
-                        theme: 'anime',
-                        title: 'Anime Tips',
-                        tips: [
-                            "Exact Equations: Like finding the perfect battle technique - everything just fits!",
-                            "Bernoulli Equations: Like a power-up transformation - they look scary but become manageable!"
-                        ]
-                    },
-                    {
-                        theme: 'gym',
-                        title: 'Gym Tips',
-                        tips: [
-                            "Practice: Like building muscle - you need consistent practice to get stronger!",
-                            "Form Matters: Like proper lifting form - follow the solution steps carefully!"
-                        ]
-                    }
-                ],
-                memoryTechniques: [
-                    'Separable: "Separate like ingredients"',
-                    'Homogeneous: "Same degree, substitute y=vx"',
-                    'Exact: "Check M_y = N_x, then find F"',
-                    'Linear: "Find μ(x), multiply, integrate"',
-                    'Bernoulli: "Substitute z = y^(1-n)"'
-                ]
             }
         }
     ]
@@ -254,65 +122,39 @@ document.addEventListener('DOMContentLoaded', () => {
         topicScreen.style.display = 'block';
 
         topicTitle.textContent = topic.title;
+
+        const { description, analogy } = topic.content;
+
         let contentHTML = `
-            <p>${topic.content.description}</p>
-            <h3><i class="fas fa-shapes"></i> Standard Form</h3>
-            <div class="code-block">${topic.content.standardForm}</div>
+            <div class="topic-summary">
+                <p>${description}</p>
+            </div>
+
+            <div class="analogy-card ${analogy.theme}">
+                <h3>🧠 Analogy: ${analogy.title}</h3>
+                <p>${analogy.description}</p>
+
+                <h4>📘 Formula or Example</h4>
+                <div class="formula">${analogy.formula}</div>
+
+                <h4>🎬 Visual Reference</h4>
+                <p class="visual-ref">${analogy.visual}</p>
+
+                <h4>💡 Real-World Relevance</h4>
+                <p>${analogy.relevance}</p>
+
+                <div class="recall-tip">
+                    🔥 <strong>Quick Recall Tip:</strong> ${analogy.tip}
+                </div>
+            </div>
         `;
 
-        if (topic.content.solutionSteps) {
-            contentHTML += `
-                <h3><i class="fas fa-footsteps"></i> Solution Steps</h3>
-                <ol>
-                    ${topic.content.solutionSteps.map(step => `<li>${step}</li>`).join('')}
-                </ol>
-            `;
-        }
-
-        if (topic.content.example) {
-            contentHTML += `
-                <div class="example-card ${topic.content.example.theme}">
-                    <h4><i class="fas fa-lightbulb"></i> Example: ${topic.content.example.analogy}</h4>
-                    <p><strong>Question:</strong> ${topic.content.example.question}</p>
-                    <ul>
-                        ${topic.content.example.steps.map(step => `<li>${step}</li>`).join('')}
-                    </ul>
-                </div>
-            `;
-        }
-
-        if (topic.content.decisionTree) {
-            contentHTML += `
-                <h3><i class="fas fa-sitemap"></i> Decision Tree</h3>
-                ${topic.content.decisionTree.map(node => `<div class="tree-node ${node.type}">${node.text}</div>`).join('')}
-            `;
-        }
-
-        if (topic.content.quickTips) {
-            contentHTML += `
-                <h3><i class="fas fa-star"></i> Quick Tips</h3>
-                <div class="quick-tips">
-                    ${topic.content.quickTips.map(tip => `
-                        <div class="tip-card ${tip.theme}">
-                            <h4>${tip.title}</h4>
-                            <ul>${tip.tips.map(t => `<li>${t}</li>`).join('')}</ul>
-                        </div>
-                    `).join('')}
-                </div>
-            `;
-        }
-
-        if (topic.content.memoryTechniques) {
-            contentHTML += `
-                <h3><i class="fas fa-brain"></i> Memory Techniques</h3>
-                <ul>
-                    ${topic.content.memoryTechniques.map(technique => `<li>${technique}</li>`).join('')}
-                </ul>
-            `;
-        }
-
-
         topicContent.innerHTML = contentHTML;
+
+        // Rerender LaTeX
+        if (window.MathJax) {
+            window.MathJax.typeset();
+        }
     }
 
     // Gamification Engine
@@ -403,8 +245,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const textToRead = `
                 Topic: ${topic.title}.
                 ${topic.content.description}.
-                Standard Form: ${topic.content.standardForm}.
-                Solution Steps: ${topic.content.solutionSteps.join('. ')}.
             `;
             speechSynthesis.cancel(); // Cancel any previous speech
             const utterance = new SpeechSynthesisUtterance(textToRead);
@@ -481,12 +321,11 @@ document.addEventListener('DOMContentLoaded', () => {
     function createFlashcardsForTopic(topic) {
         const cards = [];
         cards.push({ question: 'Standard Form', answer: topic.content.standardForm });
-        topic.content.solutionSteps.forEach((step, i) => {
-            cards.push({ question: `Step ${i + 1}`, answer: step });
-        });
-        if (topic.content.example) {
-            cards.push({ question: 'Example Question', answer: topic.content.example.question });
-            cards.push({ question: 'Example Analogy', answer: topic.content.example.analogy });
+        if(topic.content.analogy && topic.content.analogy.formula) {
+            cards.push({ question: 'Key Formula/Substitution', answer: topic.content.analogy.formula });
+        }
+        if(topic.content.analogy && topic.content.analogy.tip) {
+            cards.push({ question: 'Recall Tip', answer: topic.content.analogy.tip });
         }
         return cards;
     }
