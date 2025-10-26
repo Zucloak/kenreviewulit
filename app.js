@@ -4,90 +4,197 @@ const studyData = {
             id: 'separable',
             title: 'Separable Equations',
             icon: 'fas fa-cut',
-            content: {
-                description: "This is the foundational stance, the first and most essential technique in your arsenal. It’s all about breaking a problem down to its purest components. You isolate the x terms on one side and the y terms on the other, making them easy to conquer individually.",
-                standardForm: '$$ \\frac{dy}{dx} = f(x)g(y) $$',
-                analogy: {
-                    theme: 'food',
-                    title: 'Mise en Place (Food Prep)',
-                    description: "Think of yourself as a master chef. Before you even think about turning on the heat, you prepare your ingredients. You chop your vegetables and place them in one bowl, measure your spices into another, and have your protein ready on a separate plate. This is *mise en place*. You are separating everything, so when it's time to cook (integrate), the process is clean, orderly, and flawless.",
-                    formula: '$$ \\frac{dy}{g(y)} = f(x)dx $$',
-                    visual: "A satisfying GIF of a chef neatly separating egg yolks from whites, or quickly chopping vegetables and sweeping them into separate containers.",
-                    relevance: "This technique is crucial for modeling simple growth and decay processes, like population growth, radioactive decay, or how a hot drink cools down. It’s about understanding systems where the rate of change depends on the current state.",
-                    tip: "Mise en place! Separate your variables before you integrate."
-                }
+            microLesson: {
+                theme: 'food',
+                summary: `The foundational stance.
+It’s about breaking a problem
+down to its purest parts.
+
+You isolate x terms on one side
+and y terms on the other,
+making them easy to conquer.`,
+                analogy: `Think like a master chef.
+Before cooking, you prep.
+Vegetables in one bowl,
+spices in another.
+
+This is *mise en place*.
+You separate everything, so when
+it's time to integrate (cook),
+the process is flawless.`,
+                formula: `Initial mix:
+$$ \\frac{dy}{dx} = f(x)g(y) $$
+Clean separation:
+$$ \\frac{dy}{g(y)} = f(x)dx $$`,
+                visual: `- **Visual:** A satisfying GIF
+of a chef neatly separating
+egg yolks from whites with
+precision and speed.`,
+                relevance: `Models simple growth and decay,
+like population change or
+how a hot drink cools down.
+It's for systems where the rate
+of change depends on the state.`,
+                tip: `"Mise en place! Separate your
+variables before you integrate."`
             }
         },
         {
             id: 'homogeneous',
             title: 'Homogeneous Equations',
             icon: 'fas fa-layer-group',
-            content: {
-                description: 'These equations are more complex. At first glance, the variables are too mixed to separate. But you, the strategist, recognize a hidden balance: every term has the same "degree." This uniformity is the key to victory.',
-                standardForm: '$$ M(x,y)dx + N(x,y)dy = 0 $$',
-                analogy: {
-                    theme: 'gym',
-                    title: 'A Balanced Workout',
-                    description: "Imagine designing a full-body workout. You need to balance opposing muscle groups—push and pull, upper and lower body—to ensure stable, holistic strength. A homogeneous equation is like a perfectly balanced set of exercises. To execute it properly, you need the right form. The substitution `y = vx` is that crucial adjustment in your technique—like shifting your grip or stance—that transforms a difficult lift into a manageable one.",
-                    formula: '$$ y = vx \\quad \\text{and} \\quad dy = vdx + xdv $$',
-                    visual: "GIF of a professional weightlifter adjusting their grip and stance before a heavy deadlift. The subtle change allows them to lift immense weight with perfect form.",
-                    relevance: "These equations appear in fields like physics and engineering, especially when dealing with properties that scale uniformly, like certain fluid dynamics or elasticity problems.",
-                    tip: "Same degree? Balanced set. Adjust your form with y=vx."
-                }
+            microLesson: {
+                theme: 'gym',
+                summary: `A more complex battlefield.
+The variables look too mixed
+to separate at first.
+
+But you spot a hidden balance:
+every term has the same "degree."
+This uniformity is the key.`,
+                analogy: `Imagine a full-body workout.
+You balance opposing muscles—
+push/pull, upper/lower body—
+for holistic strength.
+
+The substitution \`y = vx\` is your
+crucial adjustment in form,
+turning a difficult lift into
+a manageable one.`,
+                formula: `The balanced form:
+$$ M(x,y)dx + N(x,y)dy = 0 $$
+The technique adjustment:
+$$ y = vx \\implies dy = vdx + xdv $$`,
+                visual: `- **Visual:** A GIF of a pro
+weightlifter adjusting their
+grip before a heavy deadlift,
+allowing them to lift with
+perfect, powerful form.`,
+                relevance: `Appears in physics when dealing
+with properties that scale
+uniformly, like in certain
+fluid dynamics problems.`,
+                tip: `"Same degree? Balanced set.
+Adjust your form with y=vx."`
             }
         },
         {
             id: 'exact',
             title: 'Exact Equations',
             icon: 'fas fa-check-circle',
-            content: {
-                description: "This is a moment of pure clarity in battle. You see an equation that looks like a chaotic mess, but you recognize it as the result of a single, elegant technique—the chain rule in reverse. It’s not a fight; it’s a 'one-hit KO' if you see the opening.",
-                standardForm: '$$ M(x,y)dx + N(x,y)dy = 0 $$',
-                analogy: {
-                    theme: 'anime',
-                    title: 'The Perfect Counter',
-                    description: "You're in a high-stakes battle. Your opponent unleashes a complex flurry of attacks. But you've trained for this. You see the pattern, the hidden weakness. In a single, fluid motion, you execute a perfect counter that neutralizes their entire assault. That’s an exact equation. It's already the derivative of a single 'potential function,' and your job is to see it and trace it back to the source.",
-                    formula: '$$ \\frac{\\partial M}{\\partial y} = \\frac{\partial N}{\\partial x} \\quad \\implies \\quad F(x,y) = C $$',
-                    visual: "GIF of an anime swordsman (like Gojo from Jujutsu Kaisen or Levi from Attack on Titan) effortlessly deflecting a seemingly unstoppable attack with one precise, decisive movement.",
-                    relevance: "This is the language of conservation laws in physics. The potential function F(x,y) is often related to potential energy, and the equation describes a system where energy is conserved.",
-                    tip: "See the perfect balance (∂M/∂y = ∂N/∂x)? It's a one-hit KO. Find the source technique, F(x,y)."
-                }
+            microLesson: {
+                theme: 'anime',
+                summary: `A moment of pure clarity.
+The equation looks chaotic,
+but you see it as a single,
+elegant technique in reverse.
+
+It’s a "one-hit KO"
+if you spot the opening.`,
+                analogy: `You're in a high-stakes battle.
+Your opponent unleashes a
+flurry of complex attacks.
+You see the pattern.
+
+In one fluid motion, you
+execute a perfect counter that
+neutralizes their entire assault.
+That’s an exact equation.`,
+                formula: `The opening:
+$$ \\frac{\\partial M}{\\partial y} = \\frac{\\partial N}{\\partial x} $$
+The single, powerful move:
+$$ F(x,y) = C $$`,
+                visual: `- **Visual:** A GIF of Gojo from
+*Jujutsu Kaisen* effortlessly
+nullifying a powerful attack
+with a simple, precise gesture,
+showing total mastery.`,
+                relevance: `This is the language of
+conservation laws in physics,
+where F(x,y) often relates
+to potential energy.`,
+                tip: `"See the balance? It's a one-hit
+KO. Find the source, F(x,y)."`
             }
         },
         {
             id: 'linear',
             title: 'Linear Equations',
             icon: 'fas fa-chart-line',
-            content: {
-                description: "This is a common opponent, a standard pattern of attack. It’s straightforward, but requires a special tool to defeat. You need to craft a 'power-up item'—the integrating factor—that transforms the equation and makes it vulnerable.",
-                standardForm: '$$ \\frac{dy}{dx} + P(x)y = Q(x) $$',
-                analogy: {
-                    theme: 'gaming',
-                    title: 'Equipping a Game-Changing Item (TFT)',
-                    description: "You're in a crucial Teamfight Tactics match. Your main champion is strong but is getting overwhelmed. You need a force multiplier. You forge a critical item, like an Infinity Edge or a Rabadon's Deathcap, and equip it to them. Suddenly, their power skyrockets, and they slice through the enemy team. The integrating factor, μ(x), is that game-changing item.",
-                    formula: '$$ \\mu(x) = e^{\\int P(x)dx} $$',
-                    visual: "GIF from TFT where a champion is given a powerful item, and their character model begins to glow as they unleash a devastatingly powerful new attack.",
-                    relevance: "Linear equations are everywhere. They model electrical circuits (RLC circuits), mixing problems (salt in a tank), and the cooling of objects. They are the workhorse of first-order differential equations.",
-                    tip: "Facing a linear opponent? Forge your item, μ(x), and multiply its power."
-                }
+            microLesson: {
+                theme: 'gaming',
+                summary: `A common opponent with a
+standard pattern of attack.
+It’s straightforward but needs
+a special tool to defeat.
+
+You must craft a "power-up"—
+the integrating factor—that
+makes the equation vulnerable.`,
+                analogy: `Your champion is strong but
+getting overwhelmed. You forge a
+critical item, like a Rabadon's
+Deathcap, and equip it.
+
+Their power skyrockets.
+The integrating factor, μ(x),
+is that game-changing item.`,
+                formula: `The opponent:
+$$ \\frac{dy}{dx} + P(x)y = Q(x) $$
+The ultimate weapon:
+$$ \\mu(x) = e^{\\int P(x)dx} $$`,
+                visual: `- **Visual:** A GIF from TFT
+where a champion gets an item
+and begins to glow, unleashing
+a devastatingly powerful new
+area-of-effect attack.`,
+                relevance: `Linear equations are everywhere.
+They model electrical circuits,
+mixing problems, and the
+cooling of objects.`,
+                tip: `"Linear opponent? Forge your
+item, μ(x), and multiply."`
             }
         },
         {
             id: 'bernoulli',
             title: 'Bernoulli Equations',
             icon: 'fas fa-bolt',
-            content: {
-                description: "This opponent is a master of disguise. It looks non-linear and intimidating because of an extra yⁿ term. But this is a trick. A simple, clever substitution will break the illusion and reveal it for what it truly is: a Linear Equation in a costume.",
-                standardForm: '$$ \\frac{dy}{dx} + P(x)y = Q(x)y^n $$',
-                analogy: {
-                    theme: 'anime',
-                    title: 'The Transformation Power-Up',
-                    description: "A formidable villain appears, seemingly unbeatable. But the hero has a hidden card to play: a transformation. They power up (like a Super Saiyan or activating a Bankai), and in their new form, the villain's attacks are suddenly manageable. The substitution z = y¹⁻ⁿ is that transformation. It changes your perspective, turning an impossible nonlinear fight into a linear one you already know how to win.",
-                    formula: '$$ z = y^{1-n} $$',
-                    visual: "A dramatic GIF of an anime character's transformation sequence (like Deku activating Full Cowl or Ichigo's Bankai reveal). They are surrounded by energy as they change form, ready to dominate the fight.",
-                    relevance: "This technique is a prime example of a core engineering and science principle: if you can't solve a problem, transform it into one you can solve. It appears in fluid dynamics and population models where there are limiting factors (the yⁿ term).",
-                    tip: "See that rogue yⁿ? It's a disguise. Transform and reveal its true linear form!"
-                }
+            microLesson: {
+                theme: 'anime',
+                summary: `This opponent is a master
+of disguise. It looks non-linear
+and intimidating due to an
+extra yⁿ term.
+
+But this is a trick. A simple,
+clever substitution will break
+the illusion.`,
+                analogy: `A formidable villain appears.
+The hero has a hidden card: a
+transformation. They power up,
+and in their new form, the
+villain is manageable.
+
+The substitution z = y¹⁻ⁿ is
+that transformation. It changes
+your perspective.`,
+                formula: `The disguised enemy:
+$$ \\frac{dy}{dx} + P(x)y = Q(x)y^n $$
+The transformation:
+$$ z = y^{1-n} $$`,
+                visual: `- **Visual:** A GIF of Deku from
+*My Hero Academia* activating
+Full Cowl, with green energy
+coursing through him as he
+prepares for a decisive blow.`,
+                relevance: `A core science principle:
+if you can't solve a problem,
+transform it into one you
+*can* solve.`,
+                tip: `"See that rogue yⁿ? A disguise.
+Transform and reveal its true
+linear form!"`
             }
         }
     ]
@@ -123,28 +230,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
         topicTitle.textContent = topic.title;
 
-        const { description, analogy } = topic.content;
+        const { microLesson } = topic;
+        const { theme, summary, analogy, formula, visual, relevance, tip } = microLesson;
+
+        // Helper to convert multiline strings to <p> tags
+        const toParagraphs = (str) => str.split('\n').map(line => `<p>${line}</p>`).join('');
 
         let contentHTML = `
-            <div class="topic-summary">
-                <p>${description}</p>
-            </div>
+            <div class="micro-lesson-card ${theme}">
+                <h4>🎯 Concept Summary</h4>
+                <div class="content-block">${toParagraphs(summary)}</div>
 
-            <div class="analogy-card ${analogy.theme}">
-                <h3>🧠 Analogy: ${analogy.title}</h3>
-                <p>${analogy.description}</p>
+                <h4>🧠 Analogy or Comparison</h4>
+                <div class="content-block">${toParagraphs(analogy)}</div>
 
-                <h4>📘 Formula or Example</h4>
-                <div class="formula">${analogy.formula}</div>
+                <h4>📘 Formula or Example (LaTeX)</h4>
+                <div class="content-block formula">${formula.replace(/\n/g, '<br>')}</div>
 
-                <h4>🎬 Visual Reference</h4>
-                <p class="visual-ref">${analogy.visual}</p>
+                <h4>🎬 GIF or Visual Reference</h4>
+                <div class="content-block">${toParagraphs(visual)}</div>
 
                 <h4>💡 Real-World Relevance</h4>
-                <p>${analogy.relevance}</p>
+                <div class="content-block">${toParagraphs(relevance)}</div>
 
                 <div class="recall-tip">
-                    🔥 <strong>Quick Recall Tip:</strong> ${analogy.tip}
+                    🔥 <strong>Quick Recall Tip:</strong> ${tip.replace(/"/g, '')}
                 </div>
             </div>
         `;
@@ -227,6 +337,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const bgMusic = document.getElementById('bg-music');
     const musicToggle = document.getElementById('music-toggle');
     const ttsButton = document.getElementById('tts-button');
+    const themeSwitcher = document.getElementById('theme-switcher');
+
+    // Theme Switcher
+    const themes = ['default', 'food', 'gaming', 'anime', 'gym'];
+    let currentTheme = 0;
+    themeSwitcher.addEventListener('click', () => {
+        currentTheme = (currentTheme + 1) % themes.length;
+        document.body.className = `theme-${themes[currentTheme]}`;
+    });
 
     musicToggle.addEventListener('click', () => {
         if (bgMusic.paused) {
@@ -244,7 +363,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (topic) {
             const textToRead = `
                 Topic: ${topic.title}.
-                ${topic.content.description}.
+                ${topic.microLesson.summary}.
+                Analogy: ${topic.microLesson.analogy}.
+                Relevance: ${topic.microLesson.relevance}.
+                Recall Tip: ${topic.microLesson.tip}.
             `;
             speechSynthesis.cancel(); // Cancel any previous speech
             const utterance = new SpeechSynthesisUtterance(textToRead);
@@ -320,13 +442,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function createFlashcardsForTopic(topic) {
         const cards = [];
-        cards.push({ question: 'Standard Form', answer: topic.content.standardForm });
-        if(topic.content.analogy && topic.content.analogy.formula) {
-            cards.push({ question: 'Key Formula/Substitution', answer: topic.content.analogy.formula });
-        }
-        if(topic.content.analogy && topic.content.analogy.tip) {
-            cards.push({ question: 'Recall Tip', answer: topic.content.analogy.tip });
-        }
+        const { microLesson } = topic;
+        const toParagraphs = (str) => str.split('\n').map(line => `<p>${line}</p>`).join('');
+
+        cards.push({ question: 'Concept Summary', answer: toParagraphs(microLesson.summary) });
+        cards.push({ question: 'Analogy', answer: toParagraphs(microLesson.analogy) });
+        cards.push({ question: 'Key Formula', answer: microLesson.formula.replace(/\n/g, '<br>') });
+        cards.push({ question: 'Recall Tip', answer: microLesson.tip.replace(/"/g, '') });
         return cards;
     }
 });
