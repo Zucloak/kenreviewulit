@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DiffEQ Study Hub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4a6fa5;
+            --secondary: #ff7e5f;
+            --accent: #6b5b95;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --success: #28a745;
+            --warning: #ffc107;
+            --food: #e76f51;
+            --gaming: #2a9d8f;
+            --anime: #e63946;
+            --gym: #f4a261;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        header {
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            color: white;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" opacity="0.1"><path d="M30,30 Q50,10 70,30 T90,30 T70,50 T90,70 T70,90 T50,70 T30,90 T10,70 T30,50 T10,30 T30,30" fill="white"/></svg>');
+            background-size: 200px;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+
+        .interests {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .interest-tag {
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .nav-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            justify-content: center;
+        }
+
+        .tab {
+            padding: 0.8rem 1.5rem;
+            background: white;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tab:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .tab.active {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .content-section {
+            display: none;
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+        }
+
+        .content-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--light);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        h2 i {
+            color: var(--secondary);
+        }
+
+        .equation-card {
+            background: var(--light);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 5px solid var(--primary);
+            transition: transform 0.3s ease;
+        }
+
+        .equation-card:hover {
+            transform: translateX(5px);
+        }
+
+        .equation-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .equation {
+            font-family: 'Courier New', monospace;
+            background: #f1f3f4;
+            padding: 1rem;
+            border-radius: 5px;
+            margin: 1rem 0;
+            overflow-x: auto;
+            font-size: 1.1rem;
+        }
+
+        .steps {
+            margin: 1.5rem 0;
+            padding-left: 1.5rem;
+        }
+
+        .steps li {
+            margin-bottom: 0.8rem;
+            position: relative;
+        }
+
+        .steps li::before {
+            content: "➜";
+            position: absolute;
+            left: -1.5rem;
+            color: var(--secondary);
+        }
+
+        .example {
+            background: #e8f4f8;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 5px solid var(--gaming);
+        }
+
+        .example h4 {
+            color: var(--gaming);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .decision-tree {
+            background: #fff9e6;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 5px solid var(--warning);
+        }
+
+        .decision-tree h4 {
+            color: var(--warning);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tree-node {
+            margin: 1rem 0;
+            padding: 1rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .tree-node.question {
+            background: #e7f3ff;
+            border-left: 4px solid var(--primary);
+        }
+
+        .tree-node.answer {
+            background: #f0f9ff;
+            margin-left: 2rem;
+            border-left: 4px solid var(--gaming);
+        }
+
+        .quick-tips {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .tip-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease;
+            border-top: 4px solid var(--food);
+        }
+
+        .tip-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .tip-card.gaming {
+            border-top-color: var(--gaming);
+        }
+
+        .tip-card.anime {
+            border-top-color: var(--anime);
+        }
+
+        .tip-card.gym {
+            border-top-color: var(--gym);
+        }
+
+        .tip-card h4 {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        footer {
+            background: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        .motivation {
+            font-style: italic;
+            margin-top: 1rem;
+            opacity: 0.8;
+        }
+
+        @media (max-width: 768px) {
+            .nav-tabs {
+                flex-direction: column;
+            }
+            
+            .tab {
+                justify-content: center;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1><i class="fas fa-infinity"></i> DiffEQ Study Hub</h1>
+            <p class="tagline">Master Differential Equations with Your Favorite Themes!</p>
+            <div class="interests">
+                <div class="interest-tag"><i class="fas fa-utensils"></i> Food Lover</div>
+                <div class="interest-tag"><i class="fas fa-chess-queen"></i> TFT Player</div>
+                <div class="interest-tag"><i class="fas fa-user-ninja"></i> Anime Fan</div>
+                <div class="interest-tag"><i class="fas fa-dumbbell"></i> Gym Enthusiast</div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="nav-tabs">
+            <div class="tab active" data-target="overview"><i class="fas fa-home"></i> Overview</div>
+            <div class="tab" data-target="separable"><i class="fas fa-cut"></i> Separable</div>
+            <div class="tab" data-target="homogeneous"><i class="fas fa-layer-group"></i> Homogeneous</div>
+            <div class="tab" data-target="exact"><i class="fas fa-check-circle"></i> Exact</div>
+            <div class="tab" data-target="linear"><i class="fas fa-chart-line"></i> Linear</div>
+            <div class="tab" data-target="bernoulli"><i class="fas fa-bolt"></i> Bernoulli</div>
+            <div class="tab" data-target="decision"><i class="fas fa-sitemap"></i> Decision Tree</div>
+            <div class="tab" data-target="tips"><i class="fas fa-lightbulb"></i> Quick Tips</div>
+        </div>
+
+        <!-- Overview Section -->
+        <section id="overview" class="content-section active">
+            <h2><i class="fas fa-map"></i> Study Roadmap</h2>
+            <p>Welcome to your personalized Differential Equations study hub! This guide follows your professor's recommendation to study from Variable Separable to Combination methods.</p>
+            
+            <div class="equation-card">
+                <h3><i class="fas fa-route"></i> Your Learning Path</h3>
+                <ol class="steps">
+                    <li><strong>Variable Separable</strong> - The simplest type, just separate and integrate!</li>
+                    <li><strong>Homogeneous Equations</strong> - Use substitution to make them separable</li>
+                    <li><strong>Exact Equations</strong> - Find a potential function</li>
+                    <li><strong>Linear Equations</strong> - Use integrating factors</li>
+                    <li><strong>Bernoulli Equations</strong> - Transform into linear equations</li>
+                    <li><strong>Integrable Combinations</strong> - Recognize patterns to simplify</li>
+                </ol>
+            </div>
+            
+            <div class="example">
+                <h4><i class="fas fa-chess-board"></i> TFT Analogy</h4>
+                <p>Think of solving differential equations like building a TFT comp. You have different strategies (methods) for different situations (equation types), and sometimes you need to pivot (substitute) to make your comp work!</p>
+            </div>
+        </section>
+
+        <!-- Separable Equations Section -->
+        <section id="separable" class="content-section">
+            <h2><i class="fas fa-cut"></i> Variable Separable Equations</h2>
+            <p>These are the simplest type - you can literally "separate" the variables to different sides of the equation.</p>
+            
+            <div class="equation-card">
+                <h3><i class="fas fa-shapes"></i> Standard Form</h3>
+                <div class="equation">dy/dx = f(x)g(y)</div>
+                <p>Or written as: M(x)dx + N(y)dy = 0</p>
+            </div>
+            
+            <div class="equation-card">
+                <h3><i class="fas fa-footsteps"></i> Solution Steps</h3>
+                <ol class="steps">
+                    <li>Separate variables: dy/g(y) = f(x)dx</li>
+                    <li>Integrate both sides: ∫dy/g(y) = ∫f(x)dx</li>
+                    <li>Solve for y if possible</li>
+                    <li>Don't forget the +C!</li>
+                </ol>
+            </div>
+            
+            <div class="example">
+                <h4><i class="fas fa-utensils"></i> Food Example</h4>
+                <p>Solve: dy/dx = 2y/x</p>
+                <p><strong>Step 1:</strong> Separate: dy/y = 2dx/x</p>
+                <p><strong>Step 2:</strong> Integrate: ∫dy/y = ∫2dx/x → ln|y| = 2ln|x| + C</p>
+                <p><strong>Step 3:</strong> Solve: y = e^(2ln|x| + C) = e^C * x² = Cx²</p>
+                <p>Like separating ingredients before cooking!</p>
+            </div>
+        </section>
+
+        <!-- Homogeneous Equations Section -->
+        <section id="homogeneous" class="content-section">
+            <h2><i class="fas fa-layer-group"></i> Homogeneous Equations</h2>
+            <p>These equations have terms of the same "degree" - think of it like a balanced meal with equal portions!</p>
+            
+            <div class="equation-card">
+                <h3><i class="fas fa-shapes"></i> Standard Form</h3>
+                <div class="equation">M(x,y)dx + N(x,y)dy = 0</div>
+                <p>Where M and N are homogeneous functions of the same degree.</p>
+            </div>
+            
+            <div class="equation-card">
+                <h3><i class="fas fa-footsteps"></i> Solution Steps</h3>
+                <ol class="steps">
+                    <li>Check if M and N are homogeneous of same degree</li>
+                    <li>Substitute y = vx, so dy = vdx + xdv</li>
+                    <li>The equation becomes separable in v and x</li>
+                    <li>Solve as separable equation</li>
+                    <li>Substitute back y/x for v</li>
+                </ol>
+            </div>
+            
+            <div class="example">
+                <h4><i class="fas fa-dumbbell"></i> Gym Example</h4>
+                <p>Solve: (x² + y²)dx + 2xydy = 0</p>
+                <p><strong>Step 1:</strong> Both M and N are degree 2 ✓</p>
+                <p><strong>Step 2:</strong> Substitute y = vx, dy = vdx + xdv</p>
+                <p><strong>Step 3:</strong> Equation becomes: (1 + 3v²)dx + 2vx dv = 0</p>
+                <p><strong>Step 4:</strong> Separate: dx/x + 2v/(1+3v²)dv = 0</p>
+                <p><strong>Step 5:</strong> Solve and substitute back</p>
+                <p>Like adjusting your form to make an exercise easier!</p>
+            </div>
+        </section>
+
+        <!-- Exact Equations Section -->
+        <section id="exact" class="content-section">
+            <h2><i class="fas fa-check-circle"></i> Exact Equations</h2>
+            <p>These equations are already "perfect" - they're the differential of some function, like a perfectly balanced meal!</p>
+            
+            <div class="equation-card">
+                <h3><i class="fas fa-shapes"></i> Standard Form</h3>
+                <div class="equation">M(x,y)dx + N(x,y)dy = 0</div>
+                <p>With the condition: ∂M/∂y = ∂N/∂x</p>
+            </div>
+            
+            <div class="equation-card">
+                <h3><i class="fas fa-footsteps"></i> Solution Steps</h3>
+                <ol class="steps">
+                    <li>Check if ∂M/∂y = ∂N/∂x</li>
+                    <li>Find F such that ∂F/∂x = M and ∂F/∂y = N</li>
+                    <li>Integrate M with respect to x: F = ∫M dx + g(y)</li>
+                    <li>Differentiate with respect to y and compare with N to find g'(y)</li>
+                    <li>Integrate g'(y) to find g(y)</li>
+                    <li>Solution: F(x,y) = C</li>
+                </ol>
+            </div>
+            
+            <div class="example">
+                <h4><i class="fas fa-user-ninja"></i> Anime Example</h4>
+                <p>Solve: (y cos x + 2xeʸ)dx + (sin x + x²eʸ - 1)dy = 0</p>
+                <p><strong>Step 1:</strong> Check: ∂M/∂y = cos x + 2xeʸ = ∂N/∂x ✓</p>
+                <p><strong>Step 2:</strong> F = ∫(y cos x + 2xeʸ)dx = y sin x + x²eʸ + g(y)</p>
+                <p><strong>Step 3:</strong> ∂F/∂y = sin x + x²eʸ + g'(y) = sin x + x²eʸ - 1</p>
+                <p><strong>Step 4:</strong> So g'(y) = -1 → g(y) = -y</p>
+                <p><strong>Step 5:</strong> Solution: y sin x + x²eʸ - y = C</p>
+                <p>Like finding the perfect technique in an anime battle!</p>
+            </div>
+        </section>
+
+        <!-- Linear Equations Section -->
+        <section id="linear" class="content-section">
+            <h2><i class="fas fa-chart-line"></i> Linear Equations</h2>
+            <p>These equations follow a straight path - once you find the right "multiplier" (integrating factor), they become easy!</p>
+            
+            <div class="equation-card">
+                <h3><i class="fas fa-shapes"></i> Standard Form</h3>
+                <div class="equation">dy/dx + P(x)y = Q(x)</div>
+            </div>
+            
+            <div class="equation-card">
+                <h3><i class="fas fa-footsteps"></i> Solution Steps</h3>
+                <ol class="steps">
+                    <li>Identify P(x) and Q(x)</li>
+                    <li>Find integrating factor: μ(x) = e^∫P(x)dx</li>
+                    <li>Multiply the equation by μ(x)</li>
+                    <li>Left side becomes d/dx[μ(x)y]</li>
+                    <li>Integrate both sides: μ(x)y = ∫μ(x)Q(x)dx + C</li>
+                    <li>Solve for y</li>
+                </ol>
+            </div>
+            
+            <div class="example">
+                <h4><i class="fas fa-chess-queen"></i> TFT Example</h4>
+                <p>Solve: y' + 2y cos x = sin²x cos x</p>
+                <p><strong>Step 1:</strong> P(x) = 2 cos x, Q(x) = sin²x cos x</p>
+                <p><strong>Step 2:</strong> μ(x) = e^∫2 cos x dx = e^{2 sin x}</p>
+                <p><strong>Step 3:</strong> Multiply: e^{2 sin x}y' + 2 cos x e^{2 sin x}y = sin²x cos x e^{2 sin x}</p>
+                <p><strong>Step 4:</strong> Left side is d/dx[e^{2 sin x}y]</p>
+                <p><strong>Step 5:</strong> Integrate: e^{2 sin x}y = ∫sin²x cos x e^{2 sin x}dx</p>
+                <p><strong>Step 6:</strong> Solve for y</p>
+                <p>Like using an item to boost your champion's power in TFT!</p>
+            </div>
+        </section>
+
+        <!-- Bernoulli Equations Section -->
+        <section id="bernoulli" class="content-section">
+            <h2><i class="fas fa-bolt"></i> Bernoulli Equations</h2>
+            <p>These look complicated but can be transformed into linear equations with a simple substitution!</p>
+            
+            <div class="equation-card">
+                <h3><i class="fas fa-shapes"></i> Standard Form</h3>
+                <div class="equation">dy/dx + P(x)y = Q(x)yⁿ</div>
+            </div>
+            
+            <div class="equation-card">
+                <h3><i class="fas fa-footsteps"></i> Solution Steps</h3>
+                <ol class="steps">
+                    <li>Identify n, P(x), and Q(x)</li>
+                    <li>Substitute: z = y^(1-n)</li>
+                    <li>Differentiate to find dz/dx</li>
+                    <li>Substitute into original equation</li>
+                    <li>It becomes linear in z!</li>
+                    <li>Solve as linear equation</li>
+                    <li>Substitute back y = z^(1/(1-n))</li>
+                </ol>
+            </div>
+            
+            <div class="example">
+                <h4><i class="fas fa-utensils"></i> Food Example</h4>
+                <p>Solve: y' + xy = xy²</p>
+                <p><strong>Step 1:</strong> n = 2, P(x) = x, Q(x) = x</p>
+                <p><strong>Step 2:</strong> z = y^(1-2) = y^(-1)</p>
+                <p><strong>Step 3:</strong> dz/dx = -y^(-2) dy/dx</p>
+                <p><strong>Step 4:</strong> Substitute: -y² dz/dx + xy = xy²</p>
+                <p><strong>Step 5:</strong> Divide by -y²: dz/dx - xz = -x (linear!)</p>
+                <p><strong>Step 6:</strong> Solve as linear equation</p>
+                <p>Like transforming a complex recipe into simple steps!</p>
+            </div>
+        </section>
+
+        <!-- Decision Tree Section -->
+        <section id="decision" class="content-section">
+            <h2><i class="fas fa-sitemap"></i> Equation Type Decision Tree</h2>
+            <p>Not sure which method to use? Follow this flowchart!</p>
+            
+            <div class="decision-tree">
+                <h4><i class="fas fa-project-diagram"></i> DiffEQ Decision Tree</h4>
+                
+                <div class="tree-node question">
+                    <p><strong>Start:</strong> Given a differential equation M(x,y)dx + N(x,y)dy = 0</p>
+                </div>
+                
+                <div class="tree-node question">
+                    <p><strong>Question 1:</strong> Can you separate variables? (Can write as f(x)dx + g(y)dy = 0)</p>
+                </div>
+                
+                <div class="tree-node answer">
+                    <p><strong>YES →</strong> Use <strong>Variable Separable</strong> method</p>
+                </div>
+                
+                <div class="tree-node answer">
+                    <p><strong>NO →</strong> Go to Question 2</p>
+                </div>
+                
+                <div class="tree-node question">
+                    <p><strong>Question 2:</strong> Are M and N homogeneous of the same degree?</p>
+                </div>
+                
+                <div class="tree-node answer">
+                    <p><strong>YES →</strong> Use <strong>Homogeneous</strong> method (substitute y = vx)</p>
+                </div>
+                
+                <div class="tree-node answer">
+                    <p><strong>NO →</strong> Go to Question 3</p>
+                </div>
+                
+                <div class="tree-node question">
+                    <p><strong>Question 3:</strong> Is it exact? (Check if ∂M/∂y = ∂N/∂x)</p>
+                </div>
+                
+                <div class="tree-node answer">
+                    <p><strong>YES →</strong> Use <strong>Exact Equation</strong> method</p>
+                </div>
+                
+                <div class="tree-node answer">
+                    <p><strong>NO →</strong> Go to Question 4</p>
+                </div>
+                
+                <div class="tree-node question">
+                    <p><strong>Question 4:</strong> Can you write it as dy/dx + P(x)y = Q(x)?</p>
+                </div>
+                
+                <div class="tree-node answer">
+                    <p><strong>YES →</strong> Use <strong>Linear Equation</strong> method</p>
+                </div>
+                
+                <div class="tree-node answer">
+                    <p><strong>NO →</strong> Go to Question 5</p>
+                </div>
+                
+                <div class="tree-node question">
+                    <p><strong>Question 5:</strong> Can you write it as dy/dx + P(x)y = Q(x)yⁿ?</p>
+                </div>
+                
+                <div class="tree-node answer">
+                    <p><strong>YES →</strong> Use <strong>Bernoulli Equation</strong> method</p>
+                </div>
+                
+                <div class="tree-node answer">
+                    <p><strong>NO →</strong> Try <strong>Integrable Combinations</strong> or other methods</p>
+                </div>
+            </div>
+            
+            <div class="example">
+                <h4><i class="fas fa-dumbbell"></i> Gym Analogy</h4>
+                <p>Choosing the right method is like selecting the right exercise for your workout goals. You wouldn't do bicep curls to strengthen your legs!</p>
+            </div>
+        </section>
+
+        <!-- Quick Tips Section -->
+        <section id="tips" class="content-section">
+            <h2><i class="fas fa-lightbulb"></i> Quick Tips & Memory Aids</h2>
+            <p>Helpful tips tailored to your interests!</p>
+            
+            <div class="quick-tips">
+                <div class="tip-card">
+                    <h4><i class="fas fa-utensils"></i> Food Tips</h4>
+                    <p><strong>Separable Equations:</strong> Like separating ingredients before cooking - keep x's and y's on different sides!</p>
+                    <p><strong>Integrating Factor:</strong> Like a special sauce that makes everything come together perfectly.</p>
+                </div>
+                
+                <div class="tip-card gaming">
+                    <h4><i class="fas fa-chess-queen"></i> TFT Tips</h4>
+                    <p><strong>Decision Making:</strong> Like choosing your comp - identify the equation type first!</p>
+                    <p><strong>Substitution:</strong> Like pivoting your comp when it's not working - try a different approach!</p>
+                </div>
+                
+                <div class="tip-card anime">
+                    <h4><i class="fas fa-user-ninja"></i> Anime Tips</h4>
+                    <p><strong>Exact Equations:</strong> Like finding the perfect battle technique - everything just fits!</p>
+                    <p><strong>Bernoulli Equations:</strong> Like a power-up transformation - they look scary but become manageable!</p>
+                </div>
+                
+                <div class="tip-card gym">
+                    <h4><i class="fas fa-dumbbell"></i> Gym Tips</h4>
+                    <p><strong>Practice:</strong> Like building muscle - you need consistent practice to get stronger!</p>
+                    <p><strong>Form Matters:</strong> Like proper lifting form - follow the solution steps carefully!</p>
+                </div>
+            </div>
+            
+            <div class="equation-card">
+                <h3><i class="fas fa-brain"></i> Memory Techniques</h3>
+                <ul class="steps">
+                    <li><strong>Separable:</strong> "Separate like ingredients"</li>
+                    <li><strong>Homogeneous:</strong> "Same degree, substitute y=vx"</li>
+                    <li><strong>Exact:</strong> "Check M_y = N_x, then find F"</li>
+                    <li><strong>Linear:</strong> "Find μ(x), multiply, integrate"</li>
+                    <li><strong>Bernoulli:</strong> "Substitute z = y^(1-n)"</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>Made with <i class="fas fa-heart" style="color: #e25555;"></i> for your DiffEQ success!</p>
+        <p class="motivation">"Solving differential equations is like leveling up in your favorite game - challenging at first, but incredibly rewarding once you master it!"</p>
+    </footer>
+
+    <script>
+        // Tab functionality
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs and sections
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+                
+                // Add active class to clicked tab and corresponding section
+                tab.classList.add('active');
+                const targetId = tab.getAttribute('data-target');
+                document.getElementById(targetId).classList.add('active');
+            });
+        });
+
+        // Add some interactive elements
+        document.addEventListener('DOMContentLoaded', () => {
+            // Add a motivational message based on time of day
+            const hour = new Date().getHours();
+            let message = "";
+            
+            if (hour < 12) {
+                message = "Good morning! Ready to conquer some differential equations?";
+            } else if (hour < 18) {
+                message = "Good afternoon! Time to level up your math skills!";
+            } else {
+                message = "Good evening! Perfect time for some focused studying!";
+            }
+            
+            // Create and display the message
+            const motivationEl = document.createElement('div');
+            motivationEl.style.cssText = `
+                background: linear-gradient(to right, ${hour < 12 ? '#FFD700' : hour < 18 ? '#87CEEB' : '#6A5ACD'}, ${hour < 12 ? '#FFA500' : hour < 18 ? '#4682B4' : '#4B0082'});
+                color: white;
+                padding: 1rem;
+                border-radius: 10px;
+                text-align: center;
+                margin-bottom: 2rem;
+                font-weight: bold;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            `;
+            motivationEl.textContent = message;
+            
+            document.querySelector('.container').insertBefore(motivationEl, document.querySelector('.nav-tabs'));
+        });
+    </script>
+</body>
+</html>
