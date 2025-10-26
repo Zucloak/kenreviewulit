@@ -246,31 +246,40 @@ body {
 .theme-gym { --accent-color: var(--theme-gym-primary); }
 
 /* Mobile Optimizations */
+#hamburger-menu {
+    display: none; /* Hidden on desktop */
+}
+
 @media (max-width: 768px) {
+    #hamburger-menu {
+        display: inline-block;
+    }
+
     .container {
         flex-direction: column;
     }
+
     .sidebar {
-        width: 100%;
-        height: auto;
-        border-right: none;
-        border-bottom: 2px solid var(--border-color);
-        display: flex;
-        overflow-x: auto;
-        padding: 0.5rem;
+        position: fixed;
+        top: 60px; /* Height of the header */
+        left: -100%;
+        width: 250px;
+        height: calc(100% - 60px);
+        background: var(--secondary-bg);
+        z-index: 999;
+        transition: left 0.3s ease-in-out;
+        border-right: 2px solid var(--border-color);
     }
-    .sidebar h2 {
-        display: none;
+
+    .sidebar.active {
+        left: 0;
     }
     #topic-nav {
-        flex-direction: row;
+        flex-direction: column;
         gap: 0.5rem;
     }
     .topic-link {
-        padding: 0.5rem 0.8rem;
-    }
-    .topic-link span {
-        display: none; /* Hide text on mobile nav */
+        padding: 0.8rem;
     }
     .hud {
         padding: 0.8rem 1rem;
@@ -352,6 +361,11 @@ body {
 
 .flashcard-back {
     transform: rotateY(180deg);
+}
+
+.flashcard-back.formula-card {
+    font-size: 1.2rem;
+    background-color: var(--primary-bg);
 }
 
 .flashcard-nav {

@@ -26,10 +26,7 @@ the process is flawless.`,
 $$ \\frac{dy}{dx} = f(x)g(y) $$
 Clean separation:
 $$ \\frac{dy}{g(y)} = f(x)dx $$`,
-                visual: `- **Visual:** A satisfying GIF
-of a chef neatly separating
-egg yolks from whites with
-precision and speed.`,
+                visual: `<img src="https://i.imgur.com/2J7fSR2.gif" alt="Chef preparing ingredients">`,
                 relevance: `Models simple growth and decay,
 like population change or
 how a hot drink cools down.
@@ -65,11 +62,7 @@ a manageable one.`,
 $$ M(x,y)dx + N(x,y)dy = 0 $$
 The technique adjustment:
 $$ y = vx \\implies dy = vdx + xdv $$`,
-                visual: `- **Visual:** A GIF of a pro
-weightlifter adjusting their
-grip before a heavy deadlift,
-allowing them to lift with
-perfect, powerful form.`,
+                visual: `<img src="https://media1.tenor.com/m/qu7Qq_tzdasAAAAd/gym-deadlift.gif" alt="Weightlifter with good form">`,
                 relevance: `Appears in physics when dealing
 with properties that scale
 uniformly, like in certain
@@ -104,11 +97,7 @@ That’s an exact equation.`,
 $$ \\frac{\\partial M}{\\partial y} = \\frac{\\partial N}{\\partial x} $$
 The single, powerful move:
 $$ F(x,y) = C $$`,
-                visual: `- **Visual:** A GIF of Gojo from
-*Jujutsu Kaisen* effortlessly
-nullifying a powerful attack
-with a simple, precise gesture,
-showing total mastery.`,
+                visual: `<img src="https://i.imgur.com/7T2Gz8s.gif" alt="Anime perfect counter">`,
                 relevance: `This is the language of
 conservation laws in physics,
 where F(x,y) often relates
@@ -143,11 +132,7 @@ is that game-changing item.`,
 $$ \\frac{dy}{dx} + P(x)y = Q(x) $$
 The ultimate weapon:
 $$ \\mu(x) = e^{\\int P(x)dx} $$`,
-                visual: `- **Visual:** A GIF from TFT
-where a champion gets an item
-and begins to glow, unleashing
-a devastatingly powerful new
-area-of-effect attack.`,
+                visual: `<img src="https://i.imgur.com/3q3Q9Y1.gif" alt="TFT item power up">`,
                 relevance: `Linear equations are everywhere.
 They model electrical circuits,
 mixing problems, and the
@@ -183,11 +168,7 @@ your perspective.`,
 $$ \\frac{dy}{dx} + P(x)y = Q(x)y^n $$
 The transformation:
 $$ z = y^{1-n} $$`,
-                visual: `- **Visual:** A GIF of Deku from
-*My Hero Academia* activating
-Full Cowl, with green energy
-coursing through him as he
-prepares for a decisive blow.`,
+                visual: `<img src="https://media1.tenor.com/m/23OrgfQvJcEAAAAd/deku-full-cowl.gif" alt="Deku Full Cowl">`,
                 relevance: `A core science principle:
 if you can't solve a problem,
 transform it into one you
@@ -217,6 +198,10 @@ document.addEventListener('DOMContentLoaded', () => {
             loadTopic(topic.id);
             document.querySelectorAll('.topic-link').forEach(l => l.classList.remove('active'));
             link.classList.add('active');
+            // Close sidebar on selection in mobile view
+            if (sidebar.classList.contains('active')) {
+                sidebar.classList.remove('active');
+            }
         });
         topicNav.appendChild(link);
     });
@@ -338,6 +323,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const musicToggle = document.getElementById('music-toggle');
     const ttsButton = document.getElementById('tts-button');
     const themeSwitcher = document.getElementById('theme-switcher');
+    const hamburgerMenu = document.getElementById('hamburger-menu');
+    const sidebar = document.getElementById('sidebar');
+
+    // Hamburger Menu
+    hamburgerMenu.addEventListener('click', () => {
+        sidebar.classList.toggle('active');
+    });
 
     // Theme Switcher
     const themes = ['default', 'food', 'gaming', 'anime', 'gym'];
@@ -411,7 +403,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         function updateCard() {
             flashcardContainer.querySelector('.flashcard-front').innerHTML = `<h3>${flashcards[currentCard].question}</h3>`;
-            flashcardContainer.querySelector('.flashcard-back').innerHTML = `<p>${flashcards[currentCard].answer}</p>`;
+            const backContent = flashcardContainer.querySelector('.flashcard-back');
+            backContent.innerHTML = flashcards[currentCard].answer;
+            // Add a class if the content is a formula for specific styling
+            if (flashcards[currentCard].question === 'Key Formula') {
+                backContent.classList.add('formula-card');
+            } else {
+                backContent.classList.remove('formula-card');
+            }
             flashcardContainer.querySelector('#card-counter').textContent = `${currentCard + 1}/${flashcards.length}`;
             cardInner.classList.remove('is-flipped');
         }
@@ -438,17 +437,23 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         updateCard();
+
+        // Rerender LaTeX in flashcards
+        if (window.MathJax) {
+            window.MathJax.typeset();
+        }
     }
 
     function createFlashcardsForTopic(topic) {
         const cards = [];
         const { microLesson } = topic;
-        const toParagraphs = (str) => str.split('\n').map(line => `<p>${line}</p>`).join('');
 
-        cards.push({ question: 'Concept Summary', answer: toParagraphs(microLesson.summary) });
-        cards.push({ question: 'Analogy', answer: toParagraphs(microLesson.analogy) });
-        cards.push({ question: 'Key Formula', answer: microLesson.formula.replace(/\n/g, '<br>') });
-        cards.push({ question: 'Recall Tip', answer: microLesson.tip.replace(/"/g, '') });
+        const formatAnswer = (str) => str.replace(/\n/g, '<br>');
+
+        cards.push({ question: 'Concept Summary', answer: formatAnswer(microLesson.summary) });
+        cards.push({ question: 'Analogy', answer: formatAnswer(microLesson.analogy) });
+        cards.push({ question: 'Key Formula', answer: microLesson.formula });
+        cards.push({ question: 'Recall Tip', answer: formatAnswer(microLesson.tip) });
         return cards;
     }
 });
